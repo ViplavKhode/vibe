@@ -9,7 +9,7 @@ export const helloWorld = inngest.createFunction(
     const codeAgent = createAgent({
       name: "codeAgent",
       system: "You are an expert next.js developer. Write readable, maiaintainable code. You write simple Next.js & Reach snippets",
-      model: gemini({model: "gemini-1.5-flash", apiKey: process.env.GEMINI_API_KEY!}),
+      model: gemini({model: "gemini-1.5-flash", apiKey: process.env.GEMINI_API_KEY}),
     });
 
       const  {output}  = await codeAgent.run(
