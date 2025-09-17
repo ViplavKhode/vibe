@@ -13,7 +13,7 @@ const Page = () => {
   const trpc = useTRPC();
   const invoke = useMutation(trpc.invoke.mutationOptions({
     onSuccess: () => {
-      toast.success("Background job invoked successfully")
+      toast.success("Background job invoked successfully");
     }
   }));
 
@@ -23,6 +23,7 @@ const Page = () => {
       <Button onClick={()=> invoke.mutate({value: value})}> 
         Invoke background job
       </Button>
+     
     </div>
   );
 }
