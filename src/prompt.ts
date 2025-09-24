@@ -65,7 +65,7 @@ export const PROMPT = `
 - 'app/page.tsx' should be the main entry point of the page. Include all relevant components so that the page is fully functional.
 - Do not leave new components unused.
 - Ensure the imports use the correct relative paths, e.g.
-  import Calculator from "./calculator";
+  import Test from "./test";
 - Maintain "'use client';" at the top if any components use React hooks.
 
 
