@@ -16,6 +16,7 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import { CrownIcon, EyeIcon, Link } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CodeView } from "@/components/code-view";
+import { FileExplorer } from "@/components/file-explorer";
 
 interface Props{
     projectId: string;
@@ -73,7 +74,7 @@ export const ProjectView = ({projectId}: Props) => {
                             <div className="ml-auto flex items-center gap-x-2">
                                 <Button asChild size="sm" variant="default">
                                     <Link href="/pricing">
-                                        <CrownIcon /> Upgrade
+                                        <CrownIcon/> <span>Upgrade </span>
                                     </Link>
                                 </Button>
                             </div>
@@ -83,11 +84,12 @@ export const ProjectView = ({projectId}: Props) => {
                         <TabsContent value="preview">
                             {!!activeFragment && <FragmentWeb data={activeFragment}/>}
                         </TabsContent>
-                        <TabsContent value="code">
-                            <CodeView 
-                                lang="ts"
-                                code = "const a ='Hello world';"
-                            />
+                        <TabsContent value="code" className="min-h-0">
+                            {!!activeFragment?.files && (
+                                <FileExplorer 
+                                    files={activeFragment.files as {[path: string]: string}}
+                                />
+                            )}
                         </TabsContent>
                     </Tabs>
                 </ResizablePanel>
