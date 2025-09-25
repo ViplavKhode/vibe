@@ -2,7 +2,6 @@ import { z } from "zod";
 import { Sandbox} from "@e2b/code-interpreter";
 import { gemini, createAgent, createTool, createNetwork, Tool } from "@inngest/agent-kit";
 
-
 import { PROMPT } from "@/prompt";
 
 import { inngest } from "./client";
@@ -30,7 +29,7 @@ export const codeAgentFunctions = inngest.createFunction(
       description: "An expert coding agent",
       system: PROMPT,
       model: gemini({
-        model: "gemini-1.5-flash",  
+        model: "gemini-2.0-flash",  
       }),
       tools: [
         createTool({
@@ -131,7 +130,6 @@ export const codeAgentFunctions = inngest.createFunction(
         onResponse: async({result, network}) => {
           const lastAssistantMessageText = 
           lastAssistantTextMessageContent(result);
-          console.log("******** LAST ASSISTANT MESSAGE TEXT ********: " +JSON.stringify(lastAssistantMessageText));
           if(lastAssistantMessageText && network){
             if(lastAssistantMessageText.includes("<task_summary>")){
               network.state.data.summary = lastAssistantMessageText;
@@ -145,7 +143,7 @@ export const codeAgentFunctions = inngest.createFunction(
     const network = createNetwork<AgentState>({
       name: "coding-agent-network",
       agents: [codeAgent],
-      maxIter: 10,
+      maxIter: 20,
       router: async({network}) =>{
         const summary = network.state.data.summary;
 
