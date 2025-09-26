@@ -13,10 +13,11 @@ import { ProjectHeader } from "../components/project-header";
 import { FragmentWeb } from "../components/fragment-web";
 
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
-import { CrownIcon, EyeIcon, Link } from "lucide-react";
+import { CrownIcon, EyeIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CodeView } from "@/components/code-view";
 import { FileExplorer } from "@/components/file-explorer";
+import Link from "next/link";
 
 interface Props{
     projectId: string;
@@ -49,7 +50,7 @@ export const ProjectView = ({projectId}: Props) => {
                         </Suspense>
                 </ResizablePanel>
                 
-                <ResizableHandle withHandle/>
+                <ResizableHandle className="hover:bg-primary transition-colors"/>
                 
                 <ResizablePanel
                     defaultSize={65}
@@ -72,8 +73,8 @@ export const ProjectView = ({projectId}: Props) => {
                                 </TabsTrigger>
                             </TabsList>
                             <div className="ml-auto flex items-center gap-x-2">
-                                <Button asChild size="sm" variant="default">
-                                    <Link href="/pricing">
+                                <Button asChild size="lg" variant="default">
+                                    <Link href="/pricing" className="flex items-center">
                                         <CrownIcon/> <span>Upgrade </span>
                                     </Link>
                                 </Button>

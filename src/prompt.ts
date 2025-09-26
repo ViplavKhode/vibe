@@ -30,7 +30,7 @@ export const PROMPT = `
 
 
 ## React and File Safety
-- Use "'use client';" only in files that need client-side logic (e.g. React hooks or browser APIs).
+- ALWAYS add "'use client';" to the TOP of page.tsx and in files that need client-side logic (e.g. React hooks or browser APIs).
 - The "'use client';" directive must be placed before other expressions whenever needed.
 - Only use "'use client';" in files that need it (e.g., when using React hooks, state, effects, browser APIs, or interactive components).
 - **Always** include "'use client';" as the first line at the top of any new component file that uses:
