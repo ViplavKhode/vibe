@@ -33,7 +33,7 @@ export const ProjectsList = ()=>{
                         className="font-normal h-auto justify-start w-full text-start p-4"
                         asChild
                     >
-                        <Link href={`/project/${project.id}`}>
+                        <Link href={`/projects/${project.id}`}>
                             <div className="flex items-center gap-x-4">
                                 <Image 
                                     src="/logo.svg"
