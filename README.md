@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Vibe - AI-Powered App Builder
 
-## Getting Started
+**Tagline:** Generate, preview, and deploy full‑stack applications from simple prompts using programmable AI agents.
 
-First, run the development server:
+---
 
+## Overview
+
+Vibe is an AI-first app builder that automates the creation of full-stack applications from plain-English prompts. Using programmable agents and background job orchestration (Inngest), Vibe generates type-safe APIs, UI components, and deployable projects using multi-model code generation (We used Gemini-2.0-Flash). Generated apps are validated in isolated Docker/E2B sandboxes, come with live preview URLs, and integrate with Clerk for authentication and billing, Prisma+Neon for persistence, and CodeRabbit for AI-assisted PR reviews.
+
+Key capabilities:
+- Generate UI components and full app scaffolds from prompts
+- Run code in isolated Docker + E2B sandboxes for safe execution
+- Background orchestration with Inngest and agent toolkit
+- Type-safe full-stack APIs with tRPC and Prisma
+- Authentication & billing with Clerk
+- Live preview URLs and code explorer for each generated project
+
+---
+
+## Features
+
+- **Frontend:** Next.js 15, React 19, Tailwind v4, Shadcn/ui
+- **Backend & Orchestration:** tRPC, Inngest, Inngest Agent Toolkit, Prisma
+- **Sandboxing & Runtime:** E2B cloud sandboxes, Docker templates
+- **Database:** Prisma + Neon
+- **Auth & Billing:** Clerk (authentication + payments)
+- **AI Models:** Gemini-2.0-Flash
+- **Dev Tools:** Git workflow automation
+- **UX:** Live project preview with shareable URLs, preview + code explorer toggle
+- **Monetization:** Built-in credit system and usage tracking
+
+---
+
+## Quickstart (Developer)
+
+> Prerequisites: Node.js (>=20), pnpm or npm, Docker (for local sandboxes), and you should have accounts/API keys for the services you plan to use (Clerk, Neon, Inngest, E2B, OpenAI/Anthropic/Grok).
+
+1. **Clone the repo**  
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/vibe.git
+cd vibe
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Install dependencies**  
+```bash
+pnpm install
+# or
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Create environment file**  
+Create a `.env` at the project root from `.env.example` and add your API keys:
+```
+# Example entries
+DATABASE_URL = 
+NEXT_PUBLIC_APP_URL =
+GEMINI_API_KEY =
+E2B_API_KEY =
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=
+NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=
+NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=
 
-## Learn More
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Run locally**  
+```bash
+pnpm dev
+# or
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. Open `http://localhost:3000` and start generating apps from prompts.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Recommended Local Development Tips
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Use Docker Desktop to run local sandbox templates when testing runtime execution.
+- Use `pnpm` for faster installs and a deterministic lockfile.
+- Limit API keys and sandbox usage while developing to avoid unexpected costs.
+- Use the Preview + Code Explorer toggle to inspect generated code before publishing.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Architecture (high level)
+
+1. **Prompt → Agent:** User prompt kicks off an Inngest job. An agent parses the prompt and creates a project plan.
+2. **Codegen:** The agent uses one or more AI models (OpenAI / Anthropic / Grok) to generate app code and components.
+3. **Sandbox & Test:** Generated code is built and executed inside an isolated Docker/E2B sandbox for runtime validation and preview URL creation.
+4. **Persist & Review:** Code artifacts are stored (Prisma + Neon), a git repo is created, and CodeRabbit runs AI-assisted PR checks.
+5. **Deploy / Share:** User can publish, create a shareable preview URL, or export the project.
+
+---
+
+## Contributing
+
+Contributions welcome! Please open issues for bugs or feature requests and submit PRs to the `main` branch. Include tests and a short description of your changes.
+
+---
+
+## Contact
+
+LinkedIn : [Viplav Khode](https://www.linkedin.com/in/viplavkhode/)
